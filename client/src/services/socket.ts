@@ -40,9 +40,13 @@ export const useSocketStore = create<SocketState>((set, get) => ({
         return; // Exit if already connected
     }
 
-    const socket = io('http://localhost:3000');
+    const socket = io('http://80.65.211.138',{
+      path: '/socket.io/'
+  });
     socket.on('connect', () => {
+      console.log("connecting...");
       set({ isConnected: true });
+      console.log("connected");
       // socket.emit('join', { alias, isMentor });
     });
 

@@ -63,11 +63,13 @@ export const useChatStore = create<ChatState>((set, get) => ({
     const { currentSessionId } = get();
     if (!currentSessionId) return;
     const messageId = message.content.split('_')[1];
+    console.log(message)
     const session = get().activeSessions.find(session => session.id === currentSessionId);
     const messageExists = session?.messages.some(msg => msg.id === messageId);
     if(messageExists) return
-    message.content = message.content.split('_')[0]
+    
     message.id = message.content.split('_')[1]
+    message.content = message.content.split('_')[0]
 
  
     set(state => ({
